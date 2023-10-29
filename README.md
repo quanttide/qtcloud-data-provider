@@ -1,1 +1,3 @@
-# 量潮数据云FastAPI服务端
+# `qtcloud-data-provider-fastapi`
+
+Provider of QuantTide Data Cloud

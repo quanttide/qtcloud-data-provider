@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "qtcloud-data-server-fastapi"
+name = "qtcloud-data-server"
 version = "0.1.0-alpha.1"
-description = "量潮数据云FastAPI客户端"
+description = "量潮数据云服务端"
 authors = ["QuantTide Inc. <opensource@quanttide.com>"]
 license = "Business Source License"
 readme = "README.md"

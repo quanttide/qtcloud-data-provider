@@ -1,0 +1,46 @@
+### 获取数据集列表
+
+GET {api_root}/datasets/
+Accept: application/json
+
+### 创建数据集
+
+POST {api_root}/datasets/
+Accept: application/json
+
+{
+  "name": "test",
+  "description": "test",
+  "tags": ["test"],
+  "owner": "test"
+}
+
+### 获取数据集
+
+GET {api_root}/datasets/test
+Accept: application/json
+
+### 更新数据集
+
+PUT {api_root}/datasets/test
+Accept: application/json
+
+### 部分更新数据集
+
+PATCH {api_root}/datasets/test
+Accept: application/json
+
+### 获取数据模型列表
+
+POST {api_root}/schemas/?dataset=test
+Accept: application/json
+
+### 获取数据记录列表
+
+POST {api_root}/schemas/test/records/
+Accept: application/json
+
+### 删除数据集
+
+DELETE {api_root}/datasets/test
+Accept: application/json

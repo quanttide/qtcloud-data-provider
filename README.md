@@ -1,3 +1,3 @@
-# `qtcloud-data-provider-fastapi`
+# `qtcloud-data-provider`
 
 Provider of QuantTide Data Cloud

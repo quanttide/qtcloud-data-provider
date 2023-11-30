@@ -1,12 +1,11 @@
 """
 ORM for dataset
 """
-from datetime import datetime
 
-from fastapi_restful.guid_type import GUID, GUID_DEFAULT_SQLITE
-from sqlalchemy import Column, DateTime, String, Text
+from sqlalchemy.orm import Mapped
 
 from app.dependencies.db import BaseORM
+from app.orms.base import CreatedAt, Id, Name, Readme, UpdatedAt, VerboseName
 
 
 class DataSetORM(BaseORM):
@@ -17,11 +16,9 @@ class DataSetORM(BaseORM):
     # Too few public methods
     __tablename__ = 'dataset'
 
-    id: Column[GUID] = Column(GUID, primary_key=True, index=True,
-                              default=GUID_DEFAULT_SQLITE)
-    created_at: Column[datetime] = Column(DateTime, default=datetime.now)
-    updated_at: Column[datetime] = Column(DateTime, default=datetime.now,
-                                          onupdate=datetime.now)
-    name: Column[str] = Column(String(255), nullable=False, index=True)
-    verbose_name: Column[str] = Column(String(255), nullable=True)
-    readme: Column[str] = Column(Text, nullable=True)
+    id: Mapped[Id]
+    created_at: Mapped[CreatedAt]
+    updated_at: Mapped[UpdatedAt]
+    name: Mapped[Name]
+    verbose_name: Mapped[VerboseName]
+    readme: Mapped[Readme]

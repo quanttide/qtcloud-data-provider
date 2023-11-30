@@ -1,3 +1,7 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "qtcloud-data-server"
 version = "0.1.0-alpha.1"
@@ -11,7 +15,7 @@ packages = [{include = "app"}]
 python = "^3.9"
 fastapi = "^0.104.0"
 uvicorn = "^0.23.2"
-pydantic = "^2.4.2"
+pydantic = "^2.5.2"
 sqlalchemy = "^2.0.22"
 fastapi-restful = "^0.5.0"
 typing-inspect = "^0.9.0"
@@ -27,7 +31,8 @@ pre-commit = "^3.5.0"
 pylint = "^3.0.2"
 dodgy = "^0.2.1"
 bandit = "^1.7.5"
+httpx = "^0.25.2"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101"]

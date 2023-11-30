@@ -17,19 +17,22 @@ repos:
 
 - repo: local
   hooks:
-  - id: pytest
-    name: pytest
-    entry: pytest
-    language: system
-    types: [python]
+    - id: pytest
+      name: pytest
+      entry: pytest
+      language: system
+      # fix: https://stackoverflow.com/questions/64011304/running-pytest-as-a-pre-commit-hook-no-such-file-or-directory-issue/64014324#64014324
+      pass_filenames: false
+      always_run: true
 
 - repo: local
   hooks:
-  - id: coverage
-    name: coverage
-    entry: coverage
-    language: system
-    types: [python]
+    - id: coverage
+      name: coverage
+      entry: coverage run -m pytest
+      language: system
+      pass_filenames: false
+      always_run: true
 
 - repo: local
   hooks:
@@ -43,7 +46,7 @@ repos:
   hooks:
     - id: black
       name: black
-      entry: black
+      entry: black --diff .
       language: system
       types: [python]
 
@@ -83,6 +86,6 @@ repos:
   hooks:
     - id: bandit
       name: bandit
-      entry: bandit
+      entry: bandit -c pyproject.toml -r .
       language: system
       types: [python]

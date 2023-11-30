@@ -1,10 +1,10 @@
-from .dataset import DataSet
-from .schema import DataSchema
-from .record import DataRecord
-
+"""
+Domain Models for QuantTide Data Cloud
+"""
+from .dataset import DataRecord, DataSchema, DataSet
 
 __all__ = [
-    "DataSet",
-    "DataSchema",
-    "DataRecord",
+    'DataSet',
+    'DataSchema',
+    'DataRecord',
 ]

@@ -1,33 +1,79 @@
-from fastapi import APIRouter
+"""
+Dataset Endpoints.
+"""
 
-router = APIRouter(prefix="/datasets", )
+from fastapi import APIRouter, HTTPException
+
+from app.schemas import DataSet
+
+router = APIRouter(prefix='/datasets')
+# In-memory database (for demonstration purposes)
+datasets: list[DataSet] = []
 
 
-@router.get("/")
+@router.get('/')
 async def list_datasets():
-    return [{"username": "Rick"}, {"username": "Morty"}]
+    """
+    list all datasets
+    """
+    return datasets
 
 
-@router.post("/")
-async def create_dataset():
-    return {"username": "Rick"}
+@router.post('/', status_code=201)
+async def create_dataset(dataset: DataSet):
+    """
+    create a new dataset
+    """
+    datasets.append(dataset)
+    return dataset
 
 
-@router.get("/{name}")
+@router.get('/{name}')
 async def retrieve_dataset(name: str):
-    return {"username": name}
+    """
+    retrieve dataset by its name
+    :param name: dataset name
+    :return: dataset
+    """
+    return {'username': name}
 
 
-@router.put("/{name}")
+@router.put('/{name}')
 async def update_dataset(name: str):
-    return {"username": name}
+    """
+    update dataset by its name
+    :param name: dataset name
+    :return: dataset
+    """
+    return {'username': name}
 
 
-@router.patch("/{name}")
-async def patch_dataset(name: str):
-    return {"username": name}
+@router.patch('/{name}')
+async def partial_update_dataset(name: str):
+    """
+    partial update dataset by its name
+    :param name: dataset name
+    :return: dataset
+    """
+    return {'username': name}
 
 
-@router.delete("/{name}")
+@router.delete('/{name}', status_code=204)
 async def delete_dataset(name: str):
-    return {"username": name}
+    """
+    delete dataset by its name
+    :param name: dataset name
+    :return: None
+    """
+    # 找到要删除的数据集的索引
+    index_to_delete = None
+    for i, dataset in enumerate(datasets):
+        if dataset.name == name:
+            index_to_delete = i
+            break
+
+    # 如果找到了要删除的索引，使用 pop 删除
+    if index_to_delete:
+        datasets.pop(index_to_delete)
+        return None
+    raise HTTPException(status_code=404, detail=f'Dataset {name} not found')

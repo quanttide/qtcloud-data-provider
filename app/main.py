@@ -1,11 +1,20 @@
-from fastapi import FastAPI, Request
+"""
+Entry module
+"""
 
-from .routers import dataset
+from fastapi import FastAPI
+
+from .routers import dataset, record, schema
 
 app = FastAPI()
 app.include_router(dataset.router)
+app.include_router(schema.router)
+app.include_router(record.router)
 
 
-@app.get("/")
-async def root(request: Request):
-    return {"Host": request.headers["host"]}
+@app.get('/')
+async def root():
+    """
+    Root endpoint.
+    """
+    return {'msg': 'Hello World!'}

@@ -1,9 +1,11 @@
 """
 Dataset Endpoints.
 """
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.orm import Session
 
-from fastapi import APIRouter, HTTPException
-
+from app.cruds.dataset import create_dataset as create_dataset_crud
+from app.dependencies.db import get_db
 from app.schemas import DataSet
 
 router = APIRouter(prefix='/datasets')
@@ -19,13 +21,13 @@ async def list_datasets():
     return datasets
 
 
-@router.post('/', status_code=201)
-async def create_dataset(dataset: DataSet):
+@router.post('/', status_code=201, response_model=DataSet)
+async def create_dataset(dataset: DataSet, db: Session = Depends(get_db)):
     """
     create a new dataset
     """
-    datasets.append(dataset)
-    return dataset
+    db_dataset = create_dataset_crud(db, dataset)
+    return db_dataset
 
 
 @router.get('/{name}')

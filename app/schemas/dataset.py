@@ -1,12 +1,14 @@
 """
-Domain models for DataSet subdomain
+Domain models for DataSetORM subdomain
 """
+
+
 from .base import BaseModel
 
 
 class DataSet(BaseModel):
     """
-    DataSet domain model
+    DataSetORM domain model
     """
 
     # pylint: disable=R0903
@@ -28,8 +30,7 @@ class DataSchema(BaseModel):
     verbose_name: str
     readme: str
 
-    # pylint: disable=R0903
-    # Too few public methods
+    # pylint: disable=R0903  # Too few public methods
 
 
 class DataRecord(BaseModel):
@@ -37,5 +38,4 @@ class DataRecord(BaseModel):
     DataRecord domain model
     """
 
-    # pylint: disable=R0903
-    # Too few public methods
+    # pylint: disable=R0903  # Too few public methods

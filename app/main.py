@@ -4,7 +4,10 @@ Entry module
 
 from fastapi import FastAPI
 
-from .routers import dataset, record, schema
+from app.dependencies.db import BaseORM, engine
+from app.routers import dataset, record, schema
+
+BaseORM.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.include_router(dataset.router)

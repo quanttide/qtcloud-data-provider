@@ -1,20 +1,20 @@
 # https://medium.com/@anton-k./how-to-set-up-pre-commit-hooks-with-python-2b512290436
+# https://github.com/tiangolo/fastapi/blob/master/.pre-commit-config.yaml
 repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v3.2.0
-  hooks:
-  - id: trailing-whitespace
-  - id: end-of-file-fixer
-  - id: check-yaml
-  - id: check-added-large-files
-  - id: check-merge-conflict
-  - id: check-ast
-  - id: double-quote-string-fixer
-  - id: debug-statements
-  - id: check-toml
-  - id: check-json
-  - id: check-xml
-
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-ast
+      - id: double-quote-string-fixer
+      - id: debug-statements
+      - id: check-toml
+      - id: check-json
+      - id: check-xml
 - repo: local
   hooks:
     - id: pytest
@@ -24,68 +24,10 @@ repos:
       # fix: https://stackoverflow.com/questions/64011304/running-pytest-as-a-pre-commit-hook-no-such-file-or-directory-issue/64014324#64014324
       pass_filenames: false
       always_run: true
-
-- repo: local
-  hooks:
-    - id: coverage
-      name: coverage
-      entry: coverage run -m pytest
-      language: system
-      pass_filenames: false
-      always_run: true
-
-- repo: local
-  hooks:
-    - id: isort
-      name: isort
-      entry: isort
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: black
-      name: black
-      entry: black --diff .
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: flake8
-      name: flake8
-      entry: flake8
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: pylint
-      name: pylint
-      entry: pylint
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: mypy
-      name: mypy
-      entry: mypy
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: dodgy
-      name: dodgy
-      entry: dodgy
-      language: system
-      types: [python]
-
-- repo: local
-  hooks:
-    - id: bandit
-      name: bandit
-      entry: bandit -c pyproject.toml -r .
-      language: system
-      types: [python]
+    - id: ruff
+      name: ruff
+      entry: ruff check app --fix --force-exclude
+      language: python
+ci:
+    autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
+    autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate

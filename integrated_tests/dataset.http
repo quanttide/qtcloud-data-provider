@@ -1,46 +1,35 @@
 ### 获取数据集列表
 
-GET {api_root}/datasets/
-Accept: application/json
+GET {{api_root}}/datasets/
+Content-Type: application/json
 
 ### 创建数据集
 
-POST {api_root}/datasets/
-Accept: application/json
+POST {{api_root}}/datasets/
+Content-Type: application/json
 
 {
   "name": "test",
-  "description": "test",
-  "tags": ["test"],
-  "owner": "test"
+  "verbose_name": "测试数据集",
+  "readme": "这是一个测试数据集"
 }
 
 ### 获取数据集
 
-GET {api_root}/datasets/test
-Accept: application/json
+GET {{api_root}}/datasets/test
+Content-Type: application/json
 
 ### 更新数据集
 
-PUT {api_root}/datasets/test
-Accept: application/json
+PUT {{api_root}}/datasets/test
+Content-Type: application/json
 
 ### 部分更新数据集
 
-PATCH {api_root}/datasets/test
-Accept: application/json
-
-### 获取数据模型列表
-
-POST {api_root}/schemas/?dataset=test
-Accept: application/json
-
-### 获取数据记录列表
-
-POST {api_root}/schemas/test/records/
-Accept: application/json
+PATCH {{api_root}}/datasets/test
+Content-Type: application/json
 
 ### 删除数据集
 
-DELETE {api_root}/datasets/test
-Accept: application/json
+DELETE {{api_root}}/datasets/test
+Content-Type: application/json
